@@ -51,17 +51,11 @@ module.exports = function convertCsv2Json(csv_file, json_file, callback, encodin
         }
     });
 
-
-    let dump_file = path.join(__dirname, 'dump.data');
-
     let rs = fs.createReadStream(csv_file, { encoding: 'utf8' });
     rs.on('error', (error) => proxy.emit('error', error));
 
-    let ws = fs.createWriteStream(dump_file);
-
     let rl = readline.createInterface({
         input: rs,
-        output: ws
     });
 
     let line_counter = 0;
